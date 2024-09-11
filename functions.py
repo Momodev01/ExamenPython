@@ -20,7 +20,7 @@ def menu():
             else:
                 lister_etudiants(etudiants)
         elif choix == "3":
-            trier_par_moyenne()
+            trier_par_moyenne(etudiants)
         elif choix == "4":
             rechercher_etudiant()
         elif choix == "5":
@@ -62,25 +62,32 @@ def demander_infos():
     lister_etudiants(etudiants)
 
 
-def trier_par_moyenne():
-    print("Triage par moyenne")
-
+def trier_par_moyenne(etudiants):
+    etudiants_tries = sorted(etudiants, key=lambda x: x['moyenne'], reverse=True)
+    print("Étudiants triés par moyenne décroissante :")
+    lister_etudiants(etudiants_tries)
+    
 
 def rechercher_etudiant():
-    print("Recherche étudiant")
+    nom_etudiant = input("Entrez le nom de l'étudiant que vous cherchez : ")
+    for etudiant in etudiants:
+        if etudiant['nom'] == nom_etudiant:
+            show_etudiant(etudiant)
+        else:
+            print("\n Aucun étudiant trouvé avec ce nom.\n")
 
 
 def modifier_notes():
-    print("Modification notes étudiant")      
+    print("Modification notes étudiant")    
 
 
 
 def valider_telephone(telephone):
     if telephone.isdigit() and telephone.startswith(('70','75', '76', '77', '78')) and len(telephone) == 9:
+        for etudiant in etudiants:
+            if etudiant['telephone'] == telephone:
+                return False
         return True
-    for etudiant in etudiants:
-        if etudiant['telephone'] == telephone:
-            return False
     return False
 
     
@@ -95,6 +102,7 @@ def note_valide(type_note):
         except ValueError :
             print("Veuillez entrer un nombre valide.")
 
+# Cette fonction permet d'afficher tous les étudiants
 def lister_etudiants(etudiants):
     print("-" * 117)
     print(f" | {'Prénom':<15} | {'Nom':<10} | {'Téléphone':<15} | {'Classe':<10} | {'Devoir':<10} | {'Projet':<10} | {'Examen':<10} | {'Moyenne':<10} |")
@@ -104,3 +112,14 @@ def lister_etudiants(etudiants):
         print(f" | {etudiant['prenom']:<15} | {etudiant['nom']:<10} | {etudiant['telephone']:<15} | {etudiant['classe']:<10} "
               f"| {etudiant['note_devoir']:<10} | {etudiant['note_projet']:<10} | {etudiant['note_examen']:<10} | {etudiant['moyenne']:<10} | ")
         print("-" * 117)
+
+# Cette fonction permet d'afficher l'etudiant recherché
+def show_etudiant(etudiant):
+    print("-" * 117)
+    print(f" | {'Prénom':<15} | {'Nom':<10} | {'Téléphone':<15} | {'Classe':<10} | {'Devoir':<10} | {'Projet':<10} | {'Examen':<10} | {'Moyenne':<10} |")
+    print("-" * 117)
+
+    print(f" | {etudiant['prenom']:<15} | {etudiant['nom']:<10} | {etudiant['telephone']:<15} | {etudiant['classe']:<10} "
+            f"| {etudiant['note_devoir']:<10} | {etudiant['note_projet']:<10} | {etudiant['note_examen']:<10} | {etudiant['moyenne']:<10} | ")
+    print("-" * 117)
+    
