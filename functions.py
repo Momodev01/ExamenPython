@@ -25,6 +25,7 @@ def menu():
             rechercher_etudiant()
         elif choix == "5":
             modifier_notes()
+            lister_etudiants(etudiants)
         elif choix == "6":
             print("Merci d'avoir utilisé l'application.")
             break
@@ -69,18 +70,29 @@ def trier_par_moyenne(etudiants):
     
 
 def rechercher_etudiant():
-    nom_etudiant = input("Entrez le nom de l'étudiant que vous cherchez : ")
+    telephone_etudiant = input("Entrez le telephone de l'étudiant que vous cherchez : ")
     for etudiant in etudiants:
-        if etudiant['nom'] == nom_etudiant:
+        if etudiant['telephone'] == telephone_etudiant:
             show_etudiant(etudiant)
         else:
             print("\n Aucun étudiant trouvé avec ce nom.\n")
 
 
 def modifier_notes():
-    print("Modification notes étudiant")    
-
-
+    # telephone = input("Le telephone de l'étudiant : ")
+    # for etudiant in etudiants:
+        
+    #     if etudiant['telephone'] == telephone:
+            
+    #         etudiant['note_devoir'] = note_valide('devoir')
+    #         etudiant['note_projet'] = note_valide('projet')
+    #         etudiant['note_examen'] = note_valide('examen')
+            
+    #         etudiant['moyenne'] = (etudiant['note_devoir'] + etudiant['note_projet'] + etudiant['note_examen']) / 3
+    #         return etudiant
+    # return None
+     
+    
 
 def valider_telephone(telephone):
     if telephone.isdigit() and telephone.startswith(('70','75', '76', '77', '78')) and len(telephone) == 9:
