@@ -79,18 +79,18 @@ def rechercher_etudiant():
 
 
 def modifier_notes():
-    # telephone = input("Le telephone de l'étudiant : ")
-    # for etudiant in etudiants:
+    telephone = input("Le telephone de l'étudiant : ")
+    for etudiant in etudiants:
         
-    #     if etudiant['telephone'] == telephone:
+        if etudiant['telephone'] == telephone:
             
-    #         etudiant['note_devoir'] = note_valide('devoir')
-    #         etudiant['note_projet'] = note_valide('projet')
-    #         etudiant['note_examen'] = note_valide('examen')
+            etudiant['note_devoir'] = note_valide('devoir')
+            etudiant['note_projet'] = note_valide('projet')
+            etudiant['note_examen'] = note_valide('examen')
             
-    #         etudiant['moyenne'] = (etudiant['note_devoir'] + etudiant['note_projet'] + etudiant['note_examen']) / 3
-    #         return etudiant
-    # return None
+            etudiant['moyenne'] = (etudiant['note_devoir'] + etudiant['note_projet'] + etudiant['note_examen']) / 3
+            return etudiant
+    return None
      
     
 
